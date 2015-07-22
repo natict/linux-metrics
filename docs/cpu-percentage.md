@@ -32,4 +32,4 @@ st : time stolen from this vm by the hypervisor
 ```
 Amazon EC2 is using the hypervisor to regulate the machine CPU usage (to match the instance type's EC2 Compute Units). If you are seeing inconsistent stolen percentage over time, then you might be using [Burstable Performance Instances](http://aws.amazon.com/ec2/instance-types/#burst).
 
-#### Next: [CPU Load](docs/cpu-load.md)
+#### Next: [CPU Load](cpu-load.md)
