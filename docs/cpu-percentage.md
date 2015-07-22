@@ -13,7 +13,7 @@ For each one of the 4 scripts under the `scripts/cpu/` directory (ie. `dummy1.sh
  1. Run the script
  2. While the script is running, look at `top` on another terminal
  3. Without looking at the code, try to figure out what the script is doing (you can use `man 1 top`) 
- 4. Stop the script (use `Ctrl+C`)
+ 4. Stop the script (use `Ctrl+C` or let it timeout after 2 minutes)
  5. Read the script content and verify your answer
 
 ### Tools
