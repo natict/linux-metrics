@@ -30,7 +30,7 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 
 	1. What is the writing speed of our script (ignore the first value, this is [EBS General Purpose IOPS Burst](http://aws.amazon.com/ebs/details/#GP))?
 	2. What is the current Load Average? why? which processes are contributing to this number?
-	3. What are the CPU user % and wait %?
+	3. What are the CPU %user, %IO-wait and %idle?
 4. While the previous script is running, start a single CPU stress:
 
 	```bash
@@ -43,6 +43,7 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 
 - Why do you think processes waiting for IO are included in the Load Average?
 - Assuming we have 1 CPU core and Load of 5, is our CPU core on 100% utilization?
+- What is the difference between %IO-wait and %idle?
 
 ### Tools
 
