@@ -39,11 +39,10 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 	Wait for another minute, and re-answer the questions above.
 5. Stop all the scripts
 
-### Re-thinking Load Average
+### Discussion
 
 - Why do you think processes waiting for IO are included in the Load Average?
 - Assuming we have 1 CPU core and Load of 5, is our CPU core on 100% utilization?
-- What is the difference between %IO-wait and %idle?
 
 ### Tools
 

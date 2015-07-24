@@ -25,7 +25,11 @@ For each one of the 4 scripts under the `scripts/cpu/` directory (ie. `dummy1.sh
 		 - `-u` CPU utilization
 	 - or  `mpstat` (similar usage and output)
 
-### Time Stolen and Amazon EC2
+### Discussion
+
+- What is the difference between %IO-wait and %idle?
+
+#### Time Stolen and Amazon EC2
 You might have noticed the `st` label. From `man 1 top`:
 ```
 st : time stolen from this vm by the hypervisor

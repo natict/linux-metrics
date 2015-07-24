@@ -23,14 +23,14 @@ Is free memory really free? What's the difference between cached memory and buff
 
 ### Discussion
 
-1. Why wasn't our memory hog able to grab all the `cached` memory?
-2. What will happen if we remove the following line from `scripts/memory/hog.sh` (Try it!)? Why?
+- Why wasn't our memory hog able to grab all the `cached` memory?
+- What will happen if we remove the following line from `scripts/memory/hog.sh` (Try it!)? Why?
 
 	```c
 	tmp[0] = 0;
 	```
 
-3. If we have some amount of free memory, do we have enough memory to support our current workload? If not, why?
+- If we have some amount of free memory, do we have enough memory to support our current workload? If not, why?
 
 
 ### Tools
