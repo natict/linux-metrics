@@ -5,3 +5,5 @@ While you can learn a lot by emitting metrics from your application, some insigh
 1. CPU
   1. [CPU Percentage](docs/cpu-percentage.md)
   2. [CPU Load](docs/cpu-load.md)
+2. Memory
+  1. [Memory Usage](docs/memory-usage.md)

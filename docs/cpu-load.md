@@ -1,4 +1,4 @@
-# CPU Matrics
+# CPU Metrics
 
 ## CPU Load
 

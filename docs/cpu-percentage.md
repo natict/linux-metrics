@@ -1,4 +1,4 @@
-# CPU Matrics
+# CPU Metrics
 
 ## CPU Percentage
 Let's start with the most common CPU metric.
