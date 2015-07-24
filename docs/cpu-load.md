@@ -52,3 +52,5 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 	 - `sar -q <interval> <count>`
 		 - `-q` queue length and load averages
 	 - or  simply `uptime`
+
+#### Next: [Memory Usage](memory-usage.md)

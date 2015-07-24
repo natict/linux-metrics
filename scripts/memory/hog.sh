@@ -1,0 +1,31 @@
+#!/bin/bash
+
+HOG_C=/tmp/hog.c
+HOG=/tmp/hog
+
+cat >$HOG_C <<'EOF'
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(int argc, char* argv[]) {
+    long page_size = sysconf(_SC_PAGESIZE);
+
+    long count = 0;
+    while(1) {
+        char* tmp = (char*) malloc(page_size);
+        if (tmp) {
+            tmp[0] = 0;
+            count += page_size;
+            printf("Allocated %ld KB\n", count/1024);
+        }
+    }
+
+    return 0;
+}
+EOF
+
+gcc -o $HOG $HOG_C
+
+exec $HOG
