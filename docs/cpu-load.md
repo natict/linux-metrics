@@ -52,4 +52,4 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 		 - `-q` queue length and load averages
 	 - or  simply `uptime`
 
-#### Next: [Memory Usage](memory-usage.md)
+#### Next: [Context Switches](cpu-ctxt.md)
