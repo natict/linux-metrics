@@ -8,3 +8,8 @@ While you can learn a lot by emitting metrics from your application, some insigh
   3. [Context Switches](docs/cpu-ctxt.md)
 2. Memory
   1. [Memory Usage](docs/memory-usage.md)
+3. IO
+  1. [IO Usage](docs/io-usage.md)
+
+
+[References](docs/references.md)

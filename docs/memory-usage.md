@@ -40,3 +40,5 @@ Is free memory really free? What's the difference between cached memory and buff
  - To get usage information over some period, use `sar -r <delay> <count>`
 	 - Here you can also see how many dirty pages you have (try running `sync` while `sar` is running)
 	 - The `%commit` field is also interesting, especially if it's larger than 100...
+
+#### Next: [IO Usage](io-usage.md)
