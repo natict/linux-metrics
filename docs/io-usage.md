@@ -15,6 +15,7 @@ From [the Kernel Documentation](https://www.kernel.org/doc/Documentation/iostats
 #### IOPS
 
 IOPS are input/output operations per second. Some operations take longer than other, eg. HDDs can do a sequential reading operations much faster than random writing operations. Here are some rough estimations [from Wikipedia](https://en.wikipedia.org/wiki/IOPS) and [Amazon EBS Product Details](http://aws.amazon.com/ebs/details/):
+
 | Device/Type           | IOPS      |
 |-----------------------|-----------|
 | 7.2k-10k RPM SATA HDD | 75-150    |
@@ -22,7 +23,6 @@ IOPS are input/output operations per second. Some operations take longer than ot
 | SATA SSD              | 1k-120k   |
 | AWS EC2 gp2           | up to 10k |
 | AWS EC2 io1           | up to 20k |
-
 
 ### Task I1: IO Usage
 
