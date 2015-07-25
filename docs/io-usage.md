@@ -59,7 +59,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 ### Discussion
 
 - Why do we need an IO queue? what does it allow the kernel to perform?
-- Why the `svctm` and `%util` iostat fields are essentially useless in a modern environment?
+- Why the `svctm` and `%util` iostat fields are essentially useless in a modern environment? (read [Marc Brooker's excellent blog post](https://brooker.co.za/blog/2014/07/04/iostat-pct.html))
 
 ### Tools
 
