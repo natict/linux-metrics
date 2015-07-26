@@ -8,7 +8,7 @@ Fire up `top`, and let's start figuring out what are the different CPU percentag
 ```
 
 ### Task CP1: CPU Percentage
-For each one of the 4 scripts under the `scripts/cpu/` directory (ie. `dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy4.sh` ):
+For each one of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy4.sh`) under the `scripts/cpu/` directory:
 
  1. Run the script
  2. While the script is running, look at `top` on another terminal
@@ -30,6 +30,7 @@ For each one of the 4 scripts under the `scripts/cpu/` directory (ie. `dummy1.sh
 - What is the difference between %IO-wait and %idle?
 
 #### Time Stolen and Amazon EC2
+
 You might have noticed the `st` label. From `man 1 top`:
 ```
 st : time stolen from this vm by the hypervisor
