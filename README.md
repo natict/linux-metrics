@@ -13,5 +13,9 @@ While you can learn a lot by emitting metrics from your application, some insigh
 4. Network
   1. [Network Utilization](docs/net-util.md)
 
+## Setup
+The workshop was designed to run on AWS EC2 t2.small instance with general purpose SSD, running Ubuntu 14.04 amd64 with transparent hugh pages disabled.
+You can build an AMI with all the dependencies installed using the attached [packer](https://www.packer.io/) template.
 
-[References](docs/references.md)
+## References
+- [here](docs/references.md)
