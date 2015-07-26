@@ -30,7 +30,7 @@ Is free memory really free? What's the difference between cached memory and buff
 	tmp[0] = 0;
 	```
 
-- If we have some amount of free memory, do we have enough memory to support our current workload? If not, why?
+- Assuming a server has some amount of free memory, can we assume it has enough memory to support it's current workload? If not, why?
 
 
 ### Tools
