@@ -29,24 +29,24 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 	```
 
 	1. What is the writing speed of our script (ignore the first value, this is [EBS General Purpose IOPS Burst](http://aws.amazon.com/ebs/details/#GP))?
-	2. What is the current Load Average? why? which processes are contributing to this number?
-	3. What are the CPU %user, %IO-wait and %idle?
+	2. What is the current Load Average? Why? Which processes contribute to this number?
+	3. What are CPU %user, %IO-wait and %idle?
 4. While the previous script is running, start a single CPU stress:
 
 	```bash
 	stress -c 1 -t 3600
 	```
-	Wait for another minute, and re-answer the questions above.
+	Wait another minute, and answer the questions above again.
 5. Stop all the scripts
 
 ### Discussion
 
-- Why do you think processes waiting for IO are included in the Load Average?
+- Why are processes waiting for IO included in the Load Average?
 - Assuming we have 1 CPU core and Load of 5, is our CPU core on 100% utilization?
 
 ### Tools
 
- - Most tools are using `/proc/loadavg` to fetch Load Average and run queue information.
+ - Most tools use `/proc/loadavg` to fetch Load Average and run queue information.
  - To get a percentage over a specific interval of time, you can use:
 	 - `sar -q <interval> <count>`
 		 - `-q` queue length and load averages
