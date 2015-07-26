@@ -8,7 +8,7 @@
 2. For the following task you'll need two machines, or a partner:
 
 	| Machine/s | Command | Notes |
-	|:-:|-|-|
+	|:---------:|---------|-------|
 	| A + B | `sar -n DEV 2` | Write down the receive/transmit packets/KB per-second. Keep this running for the entire length of the task |
 	| A + B | `sar -n EDEV 2` | These are the error statistics, read about them in `man 1 sar`. Keep this running for the entire length of the task |
 	| A | `ip a` | Write down A's IP address |
