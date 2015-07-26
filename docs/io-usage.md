@@ -48,7 +48,15 @@ IOPS are input/output operations per second. Some operations take longer than ot
 	fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
 	```
 	
-5. `fio` also support other IO patterns (by changing the `--rw=` parameter), including:
+5. Finally, repeat **read performance** benchmark, but with 1 process:
+
+	```bash
+	fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=1 --time_based --runtime=180 --group_reporting --norandommap
+	```
+	1. Read in `man 1 iostat` about the `svctm` field. Compare the value we got now to the value we got for 16 processes. Is there a difference? if so, why?
+	2. Repeat the previous question for the `%util` field.
+
+6. `fio` also support other IO patterns (by changing the `--rw=` parameter), including:
 	- `read` Sequential reads
 	- `write` Sequential reads
 	- `rw` Mixed sequential reads and writes
