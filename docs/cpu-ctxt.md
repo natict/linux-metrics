@@ -13,9 +13,9 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 	2. What is causing this rate? Multi-tasking? Interrupts? Switches between kernel and user modes?
 	3. Kill the `stress` command, and watch the rate drop
 3. Now let's see how a high context switch rate affects a dummy application
-	1. Read and run the dummy application `scripts/cpu/dummy_app.py`
+	1. Run the dummy application `scripts/cpu/dummy_app.py` (which calls a dummy function 1000 times, and prints it's runtime percentile)
 	2. Write down the percentiles and context switch rate
-	3. *In the same session*, raise the context switch rate using `stress -i 10 &` and re-run the dummy application. What are the current percentiles? Did the high context switch rate affect most of `foo()` runs (ie. the 50th percentile)? If not, why?
+	3. **In the same session**, raise the context switch rate using `stress -i 10 &` and re-run the dummy application. What are the current percentiles? Did the high context switch rate affect most of `foo()` runs (ie. the 50th percentile)? If not, why?
 4. Finally, make sure that what you're looking at is context switching overhead, and not scheduling
 	1. Retry this experiment, this time using `stress -d 10 --hdd-bytes 1k &` (verify that the CPU usage is roughly the same, and the context switch rate is lower)
 	2. Compare the dummy application run-time and number of context switches it experienced using: `perf stat -e cs python scripts/cpu/dummy_app.py`
