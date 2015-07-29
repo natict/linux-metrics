@@ -36,7 +36,7 @@ EOF
 # Clone linux-metrics in the user's home
 cat > /etc/profile.d/clone-linux-metrics.sh <<'EOF'
 #!/bin/bash
-if [ ! -e ~/linux-metrics ]; then
+if [[ ! -e ~/linux-metrics ]] && [[ $(id -u) -ne 0 ]]; then
     echo "unable to find linux-metrics directory- cloning..."
     pushd ~
     git clone https://github.com/natict/linux-metrics.git
