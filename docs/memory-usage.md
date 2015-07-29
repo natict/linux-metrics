@@ -12,10 +12,10 @@ Is free memory really free? What's the difference between cached memory and buff
 4. Read about the `buffer` and `cached Mem`  values in `man 5 proc` (under `meminfo`)
 	1. Run the memory hog `scripts/memory/hog.sh`
 	2. Write down the `buffer` size
-	3. Now run the buffer balloon `scripts/memory/buffer.sh`
+	3. Now run the buffer balloon `sudo scripts/memory/buffer.sh`
 	4. Check the `buffer` size again
 	5. Read the script, and see if you can make sense of the results...
-	6. Repeat the 5 steps above with the `cached Mem` value and  `scripts/memory/buffer.sh`
+	6. Repeat the 5 steps above with the `cached Mem` value and  `sudo scripts/memory/cache.sh`
 5. Finally, let's see how `cached Mem` affects application performance
 	1. As *root*, drop the cache using `echo 3 > /proc/sys/vm/drop_caches`
 	2. Time a dummy Python application `time python -c 'print "Hello World"'` (you can repeat these 2 steps multiple times)
