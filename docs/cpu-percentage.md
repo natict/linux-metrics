@@ -12,7 +12,7 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 
  1. Run the script
  2. While the script is running, look at `top` on another terminal window
- 3. Without looking at the code, try to figure out what the script is doing (use `man 1 top`) 
+ 3. Without looking at the code, try to figure out what the script is doing (find the percentage fields description in `man 1 top`) 
  4. Stop the script (use `Ctrl+C` or wait 2 minutes for it to timeout)
  5. Verify your answer by reading the script content
 
