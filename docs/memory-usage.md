@@ -6,7 +6,7 @@ Is free memory really free? What's the difference between cached memory and buff
 
 ### Task M1: Memory usage, Caches and Buffers
 
-1. Fire up `top`, and write down how much `free` memory you have
+1. Fire up `top`, and write down how much `free` memory you have (**keep it running for the rest of this module**)
 2. Start the memory hog `scripts/memory/hog.sh`, let it run until it gets killed (if it hangs- use `Ctrl+c`)
 3. Compare that to the number you wrote. Are they (almost) the same? If not, why?
 4. Read about the `buffer` and `cached Mem`  values in `man 5 proc` (under `meminfo`)
