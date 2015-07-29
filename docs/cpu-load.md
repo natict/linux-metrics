@@ -22,7 +22,7 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 	scripts/disk/writer.sh
 	```
 
-3. Look at the Load values for about a minute until `ldavg-1` stabilizes:
+3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
 
 	```bash
 	sar -q 1 100
