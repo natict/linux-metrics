@@ -10,8 +10,21 @@ sleep 10
 
 # Install packages
 apt-get update
+export DEBIAN_PRIORITY=critical
+export DEBIAN_FRONTEND=noninteractive
 
-apt-get -y install procps sysstat stress python2.7 gcc vim linux-tools-common linux-tools-generic linux-tools-$(uname -r) fio iotop iperf iptraf nethogs nicstat git
+apt-get -y install procps sysstat stress python2.7 gcc vim vim-youcompleteme linux-tools-common linux-tools-generic linux-tools-$(uname -r) fio iotop iperf iptraf nethogs nicstat git build-essential manpages-dev glibc-doc
+
+# BCC
+apt-get install -y bison build-essential cmake flex git libedit-dev \
+  libllvm3.7 llvm-3.7-dev libclang-3.7-dev python zlib1g-dev libelf-dev luajit luajit-5.1-dev
+
+cd ~
+git clone https://github.com/iovisor/bcc.git
+mkdir bcc/build; cd bcc/build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+make install
+
 
 # Disable transparent huge pages
 cat > /etc/rc.local <<'EOF'

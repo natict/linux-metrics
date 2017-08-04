@@ -1,21 +1,23 @@
 {
   "variables": {
-    "aws_access_key": "",
-    "aws_secret_key": "",
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "subnet_id": "",
-    "vpc_id": ""
+    "vpc_id": "",
+    "aws_region": "eu-west-1",
+    "source_ami": "ami-254ba35c"
   },
   "builders": [
     {
-      "name": "linux-metrics-us-east-1",
+      "name": "linux-metrics",
       "type": "amazon-ebs",
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
-      "region": "us-east-1",
-      "source_ami": "ami-df38e6b4",
-      "instance_type": "t2.small",
+      "region": "{{user `aws_region`}}",
+      "source_ami": "{{user `source_ami`}}",
+      "instance_type": "m4.large",
       "ssh_username": "ubuntu",
-      "ami_name": "linux-metrics-us-east-1",
+      "ami_name": "linux-metrics-{{timestamp}}",
       "subnet_id": "{{user `subnet_id`}}",
       "vpc_id": "{{user `vpc_id`}}"
     }
