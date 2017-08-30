@@ -30,6 +30,11 @@ mkdir bcc/build; cd bcc/build
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
 make install
 
+cd ~
+LATEST_NETDATA="$(wget -q -O - https://raw.githubusercontent.com/firehol/binary-packages/master/netdata-latest.gz.run)"
+wget -q -O /tmp/netdata.gz.run "https://raw.githubusercontent.com/firehol/binary-packages/master/${LATEST_NETDATA}"
+sudo bash /tmp/netdata.gz.run --quiet --accept
+rm /tmp/netdata.gz.run
 
 # Disable transparent huge pages
 cat > /etc/rc.local <<'EOF'
