@@ -17,10 +17,11 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 	2. Write the current CPU usage, the application percentiles and context switch rate
 	3. **In the same session**, raise the context switch rate using `stress -i 10 &` and re-run the dummy application. Write the current CPU usage, the application percentiles and context switch rate.
 	4. Describe the change in the percentiles. Did the high context switch rate affect most of `foo()` runs (ie. the 50th percentile)? If not, why?
-4. Finally, make sure that what you're looking at is context switching overhead, and not scheduling
-	1. Retry this experiment, this time using `stress -d 10 --hdd-bytes 1k &`
-	2. Compare the CPU usage to **3.iii** (it should be roughly the same) and compare the context switch rate (which should be lower now)
-	3. Re-run the dummy application and describe the change in the percentiles vs **3.iv**
+4. Finally, observe the behaviour when running `stress` in a different scheduling task group
+	1. Move one of your sessions to a different cgroup `sudo mkdir /sys/fs/cgroup/cpu/a; echo $$ | sudo tee /sys/fs/cgroup/cpu/a/tasks`
+	2. Run stress again  `stress -i 10` or `stress -c 10`
+	2. Compare the CPU usage to **3.iii** (it should be roughly the same) and compare the context switch rate (which should be the same)
+	3. Re-run the dummy application and describe the change in the percentiles (and process context switch) vs **3.iv**
 
 ### Discussion
 
