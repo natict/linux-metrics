@@ -8,12 +8,17 @@ fi
 # Wait for cloud-init
 sleep 10
 
+# sysdig repo
+curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
+curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
+
 # Install packages
 apt-get update
 export DEBIAN_PRIORITY=critical
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get -y install procps sysstat stress python2.7 gcc vim vim-youcompleteme linux-tools-common linux-tools-generic linux-tools-$(uname -r) fio iotop iperf iptraf nethogs nicstat git build-essential manpages-dev glibc-doc
+apt-get -y install linux-headers-$(uname -r) sysdig
 
 # BCC
 apt-get install -y bison build-essential cmake flex git libedit-dev \
