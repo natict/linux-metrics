@@ -28,6 +28,7 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 ### Discussion
 
 - What's the difference between %IO-wait and %idle?
+- Is the entire CPU load created by a process accounted to that process?
 
 #### Time Stolen and Amazon EC2
 

@@ -68,6 +68,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 
 - Why do we need an IO queue? What does it enable the kernel to perform?
 - Why are the `svctm` and `%util` iostat fields essentially useless in a modern environment? (read [Marc Brooker's excellent blog post](https://brooker.co.za/blog/2014/07/04/iostat-pct.html))
+- What is the difference in how the kernel handles reads and writes? How does that effect metrics and application behaviour?
 
 ### Tools
 

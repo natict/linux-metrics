@@ -43,6 +43,8 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 
 - Why are processes waiting for IO included in the Load Average?
 - Assuming we have 1 CPU core and Load of 5, is our CPU core on 100% utilization?
+- How can we know if load is going up or down?
+- Does a load average of 70 indicate a problem?
 
 ### Tools
 
