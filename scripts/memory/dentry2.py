@@ -2,6 +2,9 @@
 
 import os
 
-while True:
-    os.makedirs("t")
-    os.chdir("t")
+try:
+    while True:
+        os.makedirs("t")
+        os.chdir("t")
+except Exception:
+    raw_input("press any key to terminate\n")
