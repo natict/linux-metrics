@@ -36,6 +36,40 @@ wget -q -O /tmp/netdata.gz.run "https://raw.githubusercontent.com/firehol/binary
 sudo bash /tmp/netdata.gz.run --quiet --accept
 rm /tmp/netdata.gz.run
 
+# Change netdata systemd definition (e.g. to renice)
+cat > /etc/systemd/system/netdata.service <<'EOF'
+[Unit]
+Description=Real time performance monitoring
+After=network.target httpd.service squid.service nfs-server.service mysqld.service mysql.service named.service postfix.service
+
+[Service]
+Type=simple
+User=netdata
+Group=netdata
+ExecStart=/opt/netdata/usr/sbin/netdata -D
+
+# The minimum netdata Out-Of-Memory (OOM) score.
+# netdata (via [global].OOM score in netdata.conf) can only increase the value set here.
+# To decrease it, set the minimum here and set the same or a higher value in netdata.conf.
+# Valid values: -1000 (never kill netdata) to 1000 (always kill netdata).
+OOMScoreAdjust=-1000
+
+Nice=-10
+
+# saving a big db on slow disks may need some time
+TimeoutStopSec=60
+
+# restart netdata if it crashes
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl restart netdata.service
+
 # Disable transparent huge pages
 cat > /etc/rc.local <<'EOF'
 #!/bin/sh -e
