@@ -21,6 +21,7 @@ Is free memory really free? What's the difference between cached memory and buff
 	2. Time a dummy Python application `time python -c 'print "Hello World"'` (you can repeat these 2 steps multiple times)
 	3. Now re-run our dummy Python application, but this time without flushing the cached memory. Can you see the difference?
 6. Run the `memory/dentry.py` script and observe the memory usage using `free`. What is using the memory? How does it effect performance? What tools can show you kernel memory usage?
+7. Run the `memory/dentry2.py` script and try dropping the caches. Does it make a difference? what's the difference between `dentry.py` and `dentry2.py`?
 
 ### Discussion
 
