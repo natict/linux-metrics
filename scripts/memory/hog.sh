@@ -18,7 +18,9 @@ int main(int argc, char* argv[]) {
         if (tmp) {
             tmp[0] = 0;
             count += page_size;
-            printf("Allocated %ld KB\n", count/1024);
+            if (count % (page_size*1024) == 0) {
+                printf("Allocated %ld KB\n", count/1024);
+            }
         }
     }
 
