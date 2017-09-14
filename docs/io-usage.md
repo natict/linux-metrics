@@ -14,7 +14,7 @@ From [the Kernel Documentation](https://www.kernel.org/doc/Documentation/iostats
 
 #### IOPS
 
-IOPS are input/output operations per second. Some operations take longer than others, eg. HDDs can do a sequential reading operations much faster than random writing operations. Here are some rough estimations [from Wikipedia](https://en.wikipedia.org/wiki/IOPS) and [Amazon EBS Product Details](http://aws.amazon.com/ebs/details/):
+IOPS are input/output operations per second. Some operations take longer than others, eg. HDDs can do sequential reading operations much faster than random writing operations. Here are some rough estimations from [Wikipedia](https://en.wikipedia.org/wiki/IOPS) and [Amazon EBS Product Details](http://aws.amazon.com/ebs/details/):
 
 | Device/Type           | IOPS      |
 |-----------------------|-----------|
@@ -28,7 +28,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 
 1. Start by running `iostat -xd 2`, and examine the output fields. Let's go over the important ones together:
 	- **rrqm/s** & **wrqm/s**- Number of read/write requests merged per-second
-	- **r/s** & **w/s**- Read/Write requests (after merges) per-second. Their sum is the IOPS!
+	- **r/s** & **w/s**- Read/Write requests (after merges) per-second. Their sum is the **IOPS**!
 	- **rkB/s** & **wkB/s**- Number of kB read/written per-second, ie. **IO throughput**.
 	- **avgqu-sz**- Average requests queue size for this device. Check out `/sys/block/<device>/queue/nr_requests` for the maximum queue size.
 	- **r_await**, **w_await**, **await**- The average time (in ms.) for read/write/both requests to be served, including time spent in the queue, ie. **IO latency**
