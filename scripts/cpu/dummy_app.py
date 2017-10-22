@@ -28,5 +28,5 @@ if __name__ == "__main__":
         foo()
         m.append(time.time() - start)
 
-    print "50th, 90th and 99th percentile: %f, %f, %f" % (
-        percentile(m, 0.5), percentile(m, 0.9), percentile(m, 0.99))
+    print "50th, 75th, 90th and 99th percentile: %f, %f, %f, %f" % (
+        percentile(m, 0.5), percentile(m, 0.75), percentile(m, 0.9), percentile(m, 0.99))
