@@ -25,7 +25,7 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 5. What happens when processes compete for cpu time under a cgroup hierarchy ?
 	1. Move the second session to a new cgroup `sudo mkdir -p /sys/fs/cgroup/cpu/grp/b; echo $$ | sudo tee /sys/fs/cgroup/cpu/grp/b/tasks`
 	2. Run stress in one session session and perf python in the next session. What do you observe ?
-	2. Lower cpu.shares for stress cgroup `sudo echo 200 > /sys/fs/cgroup/cpu/grp/a/cpu.shares` or raise them for the other `sudo echo 1000 >
+	2. Lower cpu.shares for stress cgroup `sudo echo 200 > /sys/fs/cgroup/cpu/grp/a/cpu.shares` and raise for the other `sudo echo 1000 >
 	   /sys/fs/cgroup/cpu/grp/b/cpu.shares`
 	3. Run stress again  `stress -i 10` or `stress -c 10` and the `perf python`
 	4. What do you observe ?
@@ -34,7 +34,6 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 
 - Can performance measurements on a staging environment truly estimate performance on production?
 - Why did we run the `stress` command and our dummy application in the same session?
-	- Read about the [magic kernel patch](http://www.phoronix.com/scan.php?page=article&item=linux_2637_video&num=1)
 
 ### Tools
 
