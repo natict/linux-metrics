@@ -33,6 +33,7 @@ Is free memory really free? What's the difference between cached memory and buff
 	```
 
 - Assuming a server has some amount of free memory, can we assume it has enough memory to support it's current workload? If not, why?
+- Run `stress -m 18 --vm-bytes 100M  -t 600s`. What do you see?
 
 
 ### Tools
