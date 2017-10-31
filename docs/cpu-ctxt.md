@@ -7,27 +7,27 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 
 ### Task CS1: Context Switches
 
-1. Execute `vmstat 2` and write down the current context switch rate (`cs` field)
-2. Raise that number by executing `stress -i 10` in a new session
+1. Execute `vmstat 2` in a session (#1) and write down the current context switch rate (`cs` field)
+2. Raise that number by executing `stress -i 10` in a new session (#2)
 	1. What is the current context switch rate?
 	2. What is causing this rate? Multi-tasking? Interrupts? Switches between kernel and user modes?
 	3. Kill the `stress` command, and watch the rate drop
 3. Now let's see how a high context switch rate affects a dummy application
 	1. Run the dummy application `perf stat -e cs python scripts/cpu/dummy_app.py` (which calls a dummy function 1000 times, and prints it's runtime percentile)
 	2. Write the current CPU usage, the application percentiles and context switch rate
-	3. **In the same session**, raise the context switch rate using `stress -i 10 &` and re-run the dummy application. Write the current CPU usage, the application percentiles and context switch rate.
+	3. **In the same session**, raise the context switch rate using `stress -i 10 -t 150 &` and re-run the dummy application. Write the current CPU usage, the application percentiles and context switch rate.
 	4. Describe the change in the percentiles. Did the high context switch rate affect most of `foo()` runs (ie. the 50th percentile)? If not, why?
 4. Observe the behaviour when running `stress` in a different scheduling task group
-	1. Open a new session and move it to a different cgroup `sudo mkdir -p /sys/fs/cgroup/cpu/grp/a; echo $$ | sudo tee /sys/fs/cgroup/cpu/grp/a/tasks`
-	2. Run stress again in the new session `stress -i 10` or `stress -c 10`
+	1. Open a new session (#3) and move it to a different cgroup `sudo mkdir -p /sys/fs/cgroup/cpu/grp/a; echo $$ | sudo tee /sys/fs/cgroup/cpu/grp/a/tasks`
+	2. Run stress again in the new session (#3) `stress -i 10 -t 150` or `stress -c 10 -t 150`
 	3. Compare the CPU usage to **3.iii** (it should be roughly the same) and compare the context switch rate (which should be the same)
-	4. Re-run the dummy application in the previous session and describe the change in the percentiles (and process context switch) vs **3.iv**
+	4. Re-run the dummy application in the previous session (#2) and describe the change in the percentiles (and process context switch) vs **3.iv**
 5. What happens when processes compete for cpu time under a cgroup hierarchy ?
 	1. Move the second session to a new cgroup `sudo mkdir -p /sys/fs/cgroup/cpu/grp/b; echo $$ | sudo tee /sys/fs/cgroup/cpu/grp/b/tasks`
-	2. Run stress in one session session and perf python in the next session. What do you observe ?
-	2. Lower cpu.shares for stress cgroup `sudo echo 200 > /sys/fs/cgroup/cpu/grp/a/cpu.shares` and raise for the other `sudo echo 1000 >
+	2. Run stress in session #3 and perf python in the session #2. What do you observe ?
+	2. Lower cpu.shares for stress cgroup (#3) `sudo echo 200 > /sys/fs/cgroup/cpu/grp/a/cpu.shares` and raise for the other (#1) `sudo echo 1000 >
 	   /sys/fs/cgroup/cpu/grp/b/cpu.shares`
-	3. Run stress again  `stress -i 10` or `stress -c 10` and the `perf python`
+	3. Run stress again `stress -i 10` or `stress -c 10` in session #3 and the `perf python` script in session #2
 	4. What do you observe ?
 
 ### Discussion
@@ -41,5 +41,10 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
  - From the command-line you can use
 	 - `vmstat <delay> <count>` for global information
 	 - `pidstat -w -p <pid> <delay> <count>` for process specific information
+
+### Further reading
+
+- http://www.linfo.org/context_switch.html
+- https://wiki.archlinux.org/index.php/cgroups
 
 #### Next: [Memory Usage](memory-usage.md)
