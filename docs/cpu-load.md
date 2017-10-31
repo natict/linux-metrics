@@ -16,11 +16,17 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 ### Task CL1: CPU Load
 
 1. What is the Load Average metric? Use the Linux Process States and `man 5 proc` (search for loadavg)
-2. Start the disk stress script (NOTE: avoid running it on your own SSD):
+```
+root@snf-6933:~# man 5 proc
+root@snf-6933:~# cat /proc/loadavg
+46.26 12.59 4.39 1/106 7023
+```
+2. Start the disk stress script (NOTE: Do not run it on your own laptop !!!):
 
-	```bash
-	scripts/disk/writer.sh
-	```
+```bash
+root@snf-6933:~# cd linux-metrics
+root@snf-6933:~# ./scripts/disk/writer.sh 
+```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
 
