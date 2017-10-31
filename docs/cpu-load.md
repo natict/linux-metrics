@@ -14,36 +14,38 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 ```
 
 ### Task CL1: CPU Load
+Open two terminals (ssh connections).
 
 1. What is the Load Average metric? Use the Linux Process States and `man 5 proc` (search for loadavg)
-```
-root@snf-6933:~# man 5 proc
-root@snf-6933:~# cat /proc/loadavg
+```bash
+root:~# man 5 proc
+root:~# cat /proc/loadavg
 46.26 12.59 4.39 1/106 7023
 ```
-2. Start the disk stress script (NOTE: Do not run it on your own laptop !!!):
+2. Start the disk stress script (NOTE: Do not run this on your own laptop !!!):
 
 ```bash
-root@snf-6933:~# cd linux-metrics
-root@snf-6933:~# ./scripts/disk/writer.sh 
+root:~# cd linux-metrics
+root:~# ./scripts/disk/writer.sh 
 ```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
 
-	```bash
-	sar -q 1 100
-	```
+```bash
+root:~# sar -q 1 100
+```
+a. What is the writing speed of our script
+b. What is the current Load Average? Why? Which processes contribute to this number?
+c. What are CPU %user, %IO-wait and %idle?
 
-	1. What is the writing speed of our script (ignore the first value, this is [EBS General Purpose IOPS Burst](http://aws.amazon.com/ebs/details/#GP))?
-	2. What is the current Load Average? Why? Which processes contribute to this number?
-	3. What are CPU %user, %IO-wait and %idle?
 4. While the previous script is running, start a single CPU stress:
 
-	```bash
-	stress -c 1 -t 3600
-	```
-	Wait another minute, and answer the questions above again.
-5. Stop all the scripts
+```bash
+root:~# stress -c 1 -t 3600
+```
+Wait another minute, and answer the above questions above.
+
+5. Stop all scripts
 
 ### Discussion
 
