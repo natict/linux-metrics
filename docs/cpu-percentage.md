@@ -20,7 +20,8 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 
  - Most tools use `/proc/stat` to fetch CPU percentage. Note that it displays amount of time and not percentage.
  - To get a percentage over a specific interval of time, you can use:
-	 - `sar -P ALL -u <interval> <count>`
+	 - `sar <interval> <count>`
+	 - or  `sar -P ALL -u <interval> <count>` (for details on multiple cpus)
 		 - `-P` per-processor statistics
 		 - `-u` CPU utilization
 	 - or  `mpstat` (similar usage and output)
@@ -29,6 +30,11 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 
 - What's the difference between %IO-wait and %idle?
 - Is the entire CPU load created by a process accounted to that process?
+
+### Further reading
+
+- man proc
+- man sar
 
 #### Time Stolen and Amazon EC2
 
