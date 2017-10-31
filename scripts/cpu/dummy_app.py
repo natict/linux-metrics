@@ -23,7 +23,7 @@ def foo():
 if __name__ == "__main__":
     m = []
 
-    for _ in xrange(1000):
+    for _ in xrange(5000):
         start = time.time()
         foo()
         m.append(time.time() - start)
