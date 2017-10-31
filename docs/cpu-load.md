@@ -34,9 +34,9 @@ root:~# ./scripts/disk/writer.sh
 ```bash
 root:~# sar -q 1 100
 ```
-a. What is the writing speed of our script
-b. What is the current Load Average? Why? Which processes contribute to this number?
-c. What are CPU %user, %IO-wait and %idle?
+* What is the writing speed of our script
+* What is the current Load Average? Why? Which processes contribute to this number?
+* What are CPU %user, %IO-wait and %idle?
 
 4. While the previous script is running, start a single CPU stress:
 
