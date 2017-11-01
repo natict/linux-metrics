@@ -5,6 +5,10 @@
 ### Recall: Linux Process Context Switches
 A mechanism to store current process *state* ie. Registers, Memory maps, Kernel structs (eg. TSS in 32bit), and load another (or a new one). Context switches are usually computationally expensive (although optimization exist), yet inevitable. For example, they are used to allow multi-tasking (eg. preemption), and to switch between user and kernel modes.
 
+Interprocess context switches are classified as *voluntary* or *involuntary*. A voluntary context switch occurs when a thread blocks because it
+requires a resource that is unavailable. An involuntary context switch takes place when a thread executes for the duration of its time slice or when
+the system identifies a higher-priority thread to run.
+
 ### Task CS1: Context Switches
 
 1. Execute `vmstat 2` in a session (#1) and write down the current context switch rate (`cs` field)
@@ -13,9 +17,9 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 	2. What is causing this rate? Multi-tasking? Interrupts? Switches between kernel and user modes?
 	3. Kill the `stress` command, and watch the rate drop
 3. Now let's see how a high context switch rate affects a dummy application
-	1. Run the dummy application `perf stat -e cs python scripts/cpu/dummy_app.py` (which calls a dummy function 1000 times, and prints it's runtime percentile)
+	1. On session #2 run the dummy application `perf stat -e cs python scripts/cpu/dummy_app.py` (which calls a dummy function 5000 times, and prints it's runtime percentile)
 	2. Write the current CPU usage, the application percentiles and context switch rate
-	3. **In the same session**, raise the context switch rate using `stress -i 10 -t 150 &` and re-run the dummy application. Write the current CPU usage, the application percentiles and context switch rate.
+	3. **In the same session (#2)**, raise the context switch rate using `stress -i 10 -t 150 &` and re-run the dummy application. Write the current CPU usage, the application percentiles and context switch rate.
 	4. Describe the change in the percentiles. Did the high context switch rate affect most of `foo()` runs (ie. the 50th percentile)? If not, why?
 4. Observe the behaviour when running `stress` in a different scheduling task group
 	1. Open a new session (#3) and move it to a different cgroup `sudo mkdir -p /sys/fs/cgroup/cpu/grp/a; echo $$ | sudo tee /sys/fs/cgroup/cpu/grp/a/tasks`
@@ -24,10 +28,9 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
 	4. Re-run the dummy application in the previous session (#2) and describe the change in the percentiles (and process context switch) vs **3.iv**
 5. What happens when processes compete for cpu time under a cgroup hierarchy ?
 	1. Move the second session to a new cgroup `sudo mkdir -p /sys/fs/cgroup/cpu/grp/b; echo $$ | sudo tee /sys/fs/cgroup/cpu/grp/b/tasks`
-	2. Run stress in session #3 and perf python in the session #2. What do you observe ?
-	2. Lower cpu.shares for stress cgroup (#3) `sudo echo 200 > /sys/fs/cgroup/cpu/grp/a/cpu.shares` and raise for the other (#1) `sudo echo 1000 >
-	   /sys/fs/cgroup/cpu/grp/b/cpu.shares`
-	3. Run stress again `stress -i 10` or `stress -c 10` in session #3 and the `perf python` script in session #2
+	2. Run `stress -i 10 -t 150` in session #3 and `perf stat -e cs python scripts/cpu/dummy_app.py` in session #2. What do you observe ?
+	2. Lower cpu.shares for stress cgroup (#3) `sudo echo 200 > /sys/fs/cgroup/cpu/grp/a/cpu.shares` and raise for the other (#1) `sudo echo 1000 > /sys/fs/cgroup/cpu/grp/b/cpu.shares`
+	3. In session #3 run stress again `stress -i 10 -t 150` or `stress -c 10 -t 150` and in session #2 run the `perf stat -e cs python scripts/cpu/dummy_app.py`
 	4. What do you observe ?
 
 ### Discussion
@@ -40,10 +43,11 @@ A mechanism to store current process *state* ie. Registers, Memory maps, Kernel 
  - Most tools use `/proc/vmstat` to fetch global context switching information (`ctxt` field), and `/proc/[PID]/status` for process specific information (`voluntary_context_switches` and `nonvoluntary_context_switches` fields)
  - From the command-line you can use
 	 - `vmstat <delay> <count>` for global information
-	 - `pidstat -w -p <pid> <delay> <count>` for process specific information
+	 - `pidstat -w -p <pid> <delay> <count>` for process specific information (voluntary/involuntary context switches)
 
 ### Further reading
 
+- man sched
 - http://www.linfo.org/context_switch.html
 - https://wiki.archlinux.org/index.php/cgroups
 
