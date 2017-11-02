@@ -26,7 +26,7 @@ root:~# cat /proc/loadavg
 
 ```bash
 root:~# cd linux-metrics
-root:~# ./scripts/disk/writer.sh 
+root:~# ./scripts/disk/writer.sh
 ```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
@@ -54,7 +54,7 @@ Wait another minute, and answer the above questions above.
 - How can we know if load is going up or down?
 - Does a load average of 70 indicate a problem?
 
-### Tools
+## Tools
 
  - Most tools use `/proc/loadavg` to fetch Load Average and run queue information.
  - To get a percentage over a specific interval of time, you can use:

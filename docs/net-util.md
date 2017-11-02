@@ -19,8 +19,8 @@
 
 	1. When running the client on B, use `sar` data to determine A's link utilization (in %, assuming Gigabit Ethernet)?
 	2. What are the major differences between TCP and UDP traffic observable with `sar`?
-	3. Start to decrease the UDP buffer length (ie. from `8k` to `4k`, `2k`, `1k`, `512`, `128`, `64`). 
-		1. Does the **throughput in KB** increase or decrease? 
+	3. Start to decrease the UDP buffer length (ie. from `8k` to `4k`, `2k`, `1k`, `512`, `128`, `64`).
+		1. Does the **throughput in KB** increase or decrease?
 		2. What about the **throughput in packets**?
 		3. Look carefully at the `iperf` client and server report. Can you see any packet loss? Can you also see them in `ifconfig`?
 

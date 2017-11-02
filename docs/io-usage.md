@@ -45,7 +45,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 	```
 	
 	This will clone 16 processes to perform non-buffered (direct) random writes for 3 minutes.
-	1. Compare the values you see in `iostat` to the values you wrote down earlier. Do they make sense? 
+	1. Compare the values you see in `iostat` to the values you wrote down earlier. Do they make sense?
 	2. Look at `fio` results and try to see if the number of IOPS make sense (we are using EBS gp2 volumes).
 4. Repeat the previous task, this time benchmark **read performance**:
 
