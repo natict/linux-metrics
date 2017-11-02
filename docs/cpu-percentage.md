@@ -1,6 +1,6 @@
 # CPU Metrics
 
-You will need 3 ssh consoles
+You will need 3 ssh terminals
 
 ## CPU Percentage
 Let's start with the most common CPU metric.
