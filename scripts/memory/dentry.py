@@ -3,6 +3,7 @@
 import os
 import uuid
 import sys
+import time
 
 try:
     directory = sys.argv[1]
