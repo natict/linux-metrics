@@ -41,7 +41,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 3. In a new session, let's benchmark our device *write performance* by running:
 
 	```bash
-	(term 2) root:~# fio --directory=/tmp --name fio_test_file --direct=1 --rw=randwrite --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
+	(term 2) root:~# /bin/sh linux-metrics/scripts/disk/fio1.sh
 	```
 	
 	This will clone 16 processes to perform non-buffered (direct) random writes for 3 minutes.
@@ -50,13 +50,13 @@ IOPS are input/output operations per second. Some operations take longer than ot
 4. Repeat the previous task, this time benchmark **read performance**:
 
 	```bash
-	(term 2) root:~# fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
+	(term 2) root:~# /bin/sh linux-metrics/scripts/disk/fio2.sh
 	```
 	
 5. Finally, repeat **read performance** benchmark with 1 process:
 
 	```bash
-	(term 2) root:~# fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=1 --time_based --runtime=180 --group_reporting --norandommap
+	(term 2) root:~# /bin/sh linux-metrics/scripts/disk/fio3.sh
 	```
 	1. Read about the `svctm` field in `man 1 iostat`. Compare the value we got now to the value we got for 16 processes. Is there a difference? If so, why?
 	2. Repeat the previous question for the `%util` field.
