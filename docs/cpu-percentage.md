@@ -1,17 +1,27 @@
 # CPU Metrics
 
+You will need 3 ssh consoles
+
 ## CPU Percentage
 Let's start with the most common CPU metric.
 Fire up `top`, and let's start figuring out what the different CPU percentage values are.
 ```
-%Cpu(s):  2.3 us,  0.6 sy,  0.0 ni, 96.7 id,  0.2 wa
+(term 1) root:~# top
+```
+
+The output will look like:
+```
+%Cpu(s):  2.3 us,  0.6 sy,  0.0 ni, 96.7 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st
 ```
 
 ### Task CP1: CPU Percentage
 For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy4.sh`) under the `scripts/cpu/` directory:
 
- 1. Run the script
- 2. While the script is running, look at `top` on another terminal window
+ 1. Run the script:
+```
+(term 1) root:~# /bin/sh linux-metrics/scripts/cpu/dummy1.sh
+```
+ 2. While the script is running, look at `top` on terminal window 1.
  3. Without looking at the code, try to figure out what the script is doing (find the percentage fields description in `man 1 top`) 
  4. Stop the script (use `Ctrl+C` or wait 2 minutes for it to timeout)
  5. Verify your answer by reading the script content
@@ -25,6 +35,13 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 		 - `-P` per-processor statistics
 		 - `-u` CPU utilization
 	 - or  `mpstat` (similar usage and output)
+```
+(term 3) root:~# sar 1
+```
+or
+```
+(term 3) root:~# mpstat 1
+```
 
 ### Discussion
 
