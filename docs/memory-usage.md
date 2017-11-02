@@ -46,11 +46,11 @@ You will need 3 open terminals for this task. **DO NOT RUN THESE SCRIPTS ON YOUR
 	3. Now re-run our dummy Python application, but this time without flushing the cached memory. Can you see the difference?
 6. Run the `dentry.py` script and observe the memory usage using `free`. What is using the memory? How does it effect performance?
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/dentry.py
+    (term 2) root:~# python linux-metrics/scripts/memory/dentry.py
     ```
 7. Run the `dentry2.py` script and try dropping the caches. Does it make a difference?
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/dentry2.py
+    (term 2) root:~# python linux-metrics/scripts/memory/dentry2.py
     ```
 
 ### Discussion
