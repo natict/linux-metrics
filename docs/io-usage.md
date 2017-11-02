@@ -1,5 +1,7 @@
 # IO Metrics
 
+You will need 2 ssh terminals
+
 ## IO Usage
 
 ### Recall: Linux IO, Merges, IOPS
@@ -26,7 +28,10 @@ IOPS are input/output operations per second. Some operations take longer than ot
 
 ### Task I1: IO Usage
 
-1. Start by running `iostat -xd 2`, and examine the output fields. Let's go over the important ones together:
+1. Start by running `iostat`, and examine the output fields. Let's go over the important ones together:
+   ```
+   (term 1) root:~# iostat -xd 2
+   ```
 	- **rrqm/s** & **wrqm/s**- Number of read/write requests merged per-second
 	- **r/s** & **w/s**- Read/Write requests (after merges) per-second. Their sum is the **IOPS**!
 	- **rkB/s** & **wkB/s**- Number of kB read/written per-second, ie. **IO throughput**.
@@ -36,7 +41,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 3. In a new session, let's benchmark our device *write performance* by running:
 
 	```bash
-	fio --directory=/tmp --name fio_test_file --direct=1 --rw=randwrite --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
+	(term 2) root:~# fio --directory=/tmp --name fio_test_file --direct=1 --rw=randwrite --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
 	```
 	
 	This will clone 16 processes to perform non-buffered (direct) random writes for 3 minutes.
@@ -45,13 +50,13 @@ IOPS are input/output operations per second. Some operations take longer than ot
 4. Repeat the previous task, this time benchmark **read performance**:
 
 	```bash
-	fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
+	(term 2) root:~# fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=16 --time_based --runtime=180 --group_reporting --norandommap
 	```
 	
 5. Finally, repeat **read performance** benchmark with 1 process:
 
 	```bash
-	fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=1 --time_based --runtime=180 --group_reporting --norandommap
+	(term 2) root:~# fio --directory=/tmp --name fio_test_file --direct=1 --rw=randread --bs=16k --size=100M --numjobs=1 --time_based --runtime=180 --group_reporting --norandommap
 	```
 	1. Read about the `svctm` field in `man 1 iostat`. Compare the value we got now to the value we got for 16 processes. Is there a difference? If so, why?
 	2. Repeat the previous question for the `%util` field.
