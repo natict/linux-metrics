@@ -29,7 +29,7 @@ IOPS are input/output operations per second. Some operations take longer than ot
 ### Task I1: IO Usage
 
 1. Start by running `iostat`, and examine the output fields. Let's go over the important ones together:
-   ```
+   ```bash
    (term 1) root:~# iostat -xd 2
    ```
 	- **rrqm/s** & **wrqm/s**- Number of read/write requests merged per-second
