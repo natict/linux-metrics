@@ -18,14 +18,14 @@ Open 3 terminals (ssh connections).
 
 1. What is the Load Average metric? Use the Linux Process States and `man 5 proc` (search for loadavg)
 ```bash
-root:~# man 5 proc
-root:~# cat /proc/loadavg
+(term 1) root:~# man 5 proc
+(term 1) root:~# cat /proc/loadavg
 46.26 12.59 4.39 1/106 7023
 ```
 2. Start the disk stress script (NOTE: Do not run this on your own laptop !!!):
 
 ```bash
-root:~# cd linux-metrics
+(term 1) root:~# cd linux-metrics
 (term 1) root:~# ./scripts/disk/writer.sh
 ```
 
