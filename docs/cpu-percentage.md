@@ -1,6 +1,6 @@
 # CPU Metrics
 
-You will need 3 ssh terminal
+You will need 3 ssh terminals
 
 ## CPU Percentage
 Let's start with the most common CPU metric.
@@ -19,7 +19,7 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 
  1. Run the script:
 ```bash
-(term 1) root:~# /bin/sh linux-metrics/scripts/cpu/dummy1.sh
+(term 2) root:~# /bin/sh linux-metrics/scripts/cpu/dummy1.sh
 ```
  2. While the script is running, look at `top` on terminal window 1.
  3. Without looking at the code, try to figure out what the script is doing (find the percentage fields description in `man 1 top`)
