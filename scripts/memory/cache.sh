@@ -8,4 +8,4 @@ SIZE_IN_MB=4096
 dd if=/dev/zero of=/tmp/bigfile bs=1MB count=${SIZE_IN_MB}
 
 echo "Press Enter to continue..."; read
-rm /tmp/bigfile
+#rm /tmp/bigfile
