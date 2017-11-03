@@ -2,9 +2,9 @@
 
 ## Memory Usage
 
-Is free memory really free? What's the difference between cached memory and buffers? Why can't I dump all the caches? Let's get our hands dirty and find out...
+Is free memory really free? What's the difference between cached memory and buffers? Let's get our hands dirty and find out...
 
-You will need 3 open terminals for this task. **DO NOT RUN THESE SCRIPTS ON YOUR LAPTOP!**
+You will need 3 open terminals for this task. **DO NOT RUN ANY SCRIPTS ON YOUR LAPTOP!**
 
 ### Task M1: Memory usage, Caches and Buffers
 
@@ -17,7 +17,7 @@ You will need 3 open terminals for this task. **DO NOT RUN THESE SCRIPTS ON YOUR
     (term 2) root:~# bash linux-metrics/scripts/memory/hog.sh
     ```
 3. Go to Terminal 1 and compare that to the number you wrote. Are they (almost) the same? If not, why?
-4. Read about the `buffer` and `cached Mem`  values in `man 5 proc` (under `meminfo`)
+4. Read about the `Buffers` and `Cached`  values in `man 5 proc` (under `meminfo`)
 	1. Run the memory hog on Terminal 2 `scripts/memory/hog.sh`
     ```bash
     (term 2) root:~# bash linux-metrics/scripts/memory/hog.sh
@@ -32,7 +32,7 @@ You will need 3 open terminals for this task. **DO NOT RUN THESE SCRIPTS ON YOUR
 	6. Repeat all 5 steps above with the `cached Mem` value 
     7. Repeat all steps for `cache.sh`
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/cash.sh
+    (term 2) root:~# bash linux-metrics/scripts/memory/cache.sh
     ```
 5. Let's see how `cached Mem` affects application performance
 	1. Drop the cache 
@@ -56,13 +56,6 @@ You will need 3 open terminals for this task. **DO NOT RUN THESE SCRIPTS ON YOUR
 ### Discussion
 
 - What's the difference between `dentry.py` and `dentry2.py`
-- Why wasn't our memory hog able to grab all the `cached` memory?
-- What will happen if we remove the following line from `linux-metrics/scripts/memory/hog.sh` (Try it!)? Why?
-
-  ```c
-  tmp[0] = 0;
-  ```
-
 - Assuming a server has some amount of free memory, can we assume it has enough memory to support it's current workload? If not, why?
 - Run the following stress test, what do you see?
   ```bash
@@ -74,8 +67,8 @@ You will need 3 open terminals for this task. **DO NOT RUN THESE SCRIPTS ON YOUR
 
  - Most tools use `/proc/meminfo` to fetch memory usage information.
 	 - A simple example is the `free` utility
+     - What does the 2nd line of `free` tell us?
  - To get usage information over some period, use `sar -r <delay> <count>`
 	 - Here you can also see how many dirty pages you have (try running `sync` while `sar` is running)
-	 - The `%commit` field is also interesting, especially if it's larger than 100...
 
 #### Next: [IO Usage](io-usage.md)
