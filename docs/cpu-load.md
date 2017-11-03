@@ -25,8 +25,7 @@ Open 3 terminals (ssh connections).
 2. Start the disk stress script (NOTE: Do not run this on your own laptop !!!):
 
 ```bash
-(term 1) root:~# cd linux-metrics
-(term 1) root:~# ./scripts/disk/writer.sh
+(term 1) root:~# bash linux-metrics/scripts/disk/writer.sh
 ```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
@@ -36,7 +35,10 @@ Open 3 terminals (ssh connections).
 ```
 * What is the writing speed of our script
 * What is the current Load Average? Why? Which processes contribute to this number?
-* What are CPU %user, %IO-wait and %idle?
+```bash
+(term 2) root:~# top
+```
+* What are CPU %user, %sy, %IO-wait and %idle?
 
 4. While the previous script is running, start a single CPU stress:
 
