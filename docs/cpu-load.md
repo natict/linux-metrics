@@ -14,7 +14,7 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 ```
 
 ### Task CL1: CPU Load
-Open two terminals (ssh connections).
+Open 3 terminals (ssh connections).
 
 1. What is the Load Average metric? Use the Linux Process States and `man 5 proc` (search for loadavg)
 ```bash
@@ -26,13 +26,13 @@ root:~# cat /proc/loadavg
 
 ```bash
 root:~# cd linux-metrics
-root:~# ./scripts/disk/writer.sh
+(term 1) root:~# ./scripts/disk/writer.sh
 ```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
 
 ```bash
-root:~# sar -q 1 100
+(term 2) root:~# sar -q 1 100
 ```
 * What is the writing speed of our script
 * What is the current Load Average? Why? Which processes contribute to this number?
@@ -41,7 +41,7 @@ root:~# sar -q 1 100
 4. While the previous script is running, start a single CPU stress:
 
 ```bash
-root:~# stress -c 1 -t 3600
+(term 3) root:~# stress -c 1 -t 3600
 ```
 Wait another minute, and answer the above questions above.
 
