@@ -25,7 +25,7 @@ Open 3 terminals (ssh connections).
 2. Start the disk stress script (NOTE: Do not run this on your own laptop !!!):
 
 ```bash
-(term 1) root:~# bash linux-metrics/scripts/disk/writer.sh
+(term 1) root:~# /bin/sh linux-metrics/scripts/disk/writer.sh
 ```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:

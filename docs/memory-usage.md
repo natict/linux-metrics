@@ -14,25 +14,25 @@ You will need 3 open terminals for this task. **DO NOT RUN ANY SCRIPTS ON YOUR L
     ```
 2. Start the memory hog `hog.sh` on Terminal 2, let it run until it gets killed (if it hangs- use `Ctrl+c`)
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/hog.sh
+    (term 2) root:~# /bin/sh linux-metrics/scripts/memory/hog.sh
     ```
 3. Go to Terminal 1 and compare that to the number you wrote. Are they (almost) the same? If not, why?
 4. Read about the `Buffers` and `Cached`  values in `man 5 proc` (under `meminfo`)
 	1. Run the memory hog on Terminal 2 `scripts/memory/hog.sh`
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/hog.sh
+    (term 2) root:~# /bin/sh linux-metrics/scripts/memory/hog.sh
     ```
 	2. Write down the `buffer` size from Terminal 1
 	3. Now run the buffer balloon `buffer.sh` on Terminal 2
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/buffer.sh
+    (term 2) root:~# /bin/sh linux-metrics/scripts/memory/buffer.sh
     ```
 	4. Check the `buffer` size again
 	5. Read the script, and see if you can make sense of the results
 	6. Repeat all 5 steps above with the `cached Mem` value 
     7. Repeat all steps for `cache.sh`
     ```bash
-    (term 2) root:~# bash linux-metrics/scripts/memory/cache.sh
+    (term 2) root:~# /bin/sh linux-metrics/scripts/memory/cache.sh
     ```
 5. Let's see how `cached Mem` affects application performance
 	1. Drop the cache 
