@@ -27,13 +27,13 @@ the system identifies a higher-priority thread to run.
 3. Now let's see how a high context switch rate affects a dummy application
 	1. On session #2 run the dummy application `dummy_app.py` (which calls a dummy function 5000 times, and prints it's runtime percentiles)
    ```bash
-   (term 2) root:~# perf stat -e cs python scripts/cpu/dummy_app.py
+   (term 2) root:~# perf stat -e cs python linux-metrics/scripts/cpu/dummy_app.py
    ```
 	2. Write the current CPU usage, the application percentiles and context switch rate
 	3. **In the same session (#2)**, raise the context switch rate using `stress -i 10 -t 150 &` and re-run the dummy application. Write the current CPU usage, the application percentiles and context switch rate.
    ```bash
    (term 2) root:~# stress -i 10 -t 150 &
-   (term 2) root:~# perf stat -e cs python scripts/cpu/dummy_app.py
+   (term 2) root:~# perf stat -e cs python linux-metrics/scripts/cpu/dummy_app.py
    ```
 	4. Describe the change in the percentiles. Did the high context switch rate affect most of `foo()` runs (ie. the 50th percentile)? If not, why?
 4. Observe the behaviour when running `stress` in a different scheduling task group
@@ -55,7 +55,7 @@ the system identifies a higher-priority thread to run.
 	2. Run `stress` in session #2 and `perf dummy_app.py` in session #3. What do you observe ?
    ```bash
    (term 2) root:~# stress -i 10 -t 150
-   (term 3) root:~# perf stat -e cs python scripts/cpu/dummy_app.py
+   (term 3) root:~# perf stat -e cs python linux-metrics/scripts/cpu/dummy_app.py
    ```
 	2. Lower cpu.shares for stress cgroup (#2) and raise for cgroup (#3)
    ```bash
@@ -65,7 +65,7 @@ the system identifies a higher-priority thread to run.
 	3. In session #2 run `stress` again and in session #3 run the `perf dummy_app.py`
    ```bash
    (term 2) root:~# stress -i 10 -t 150
-   (term 3) root:~# perf stat -e cs python scripts/cpu/dummy_app.py
+   (term 3) root:~# perf stat -e cs python linux-metrics/scripts/cpu/dummy_app.py
    ```
 	4. What do you observe ?
 
