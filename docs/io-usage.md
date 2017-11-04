@@ -32,12 +32,12 @@ IOPS are input/output operations per second. Some operations take longer than ot
    ```bash
    (term 1) root:~# iostat -xd 2
    ```
-	- **rrqm/s** & **wrqm/s**- Number of read/write requests merged per-second
+	- **rrqm/s** & **wrqm/s**- Number of read/write requests merged per-second.
 	- **r/s** & **w/s**- Read/Write requests (after merges) per-second. Their sum is the **IOPS**!
 	- **rkB/s** & **wkB/s**- Number of kB read/written per-second, ie. **IO throughput**.
 	- **avgqu-sz**- Average requests queue size for this device. Check out `/sys/block/<device>/queue/nr_requests` for the maximum queue size.
 	- **r_await**, **w_await**, **await**- The average time (in ms.) for read/write/both requests to be served, including time spent in the queue, ie. **IO latency**
-2. Please write down these field's values when our system is at rest
+2. Please write down these field's values when our system is at rest.
 3. In a new session, let's benchmark our device *write performance* by running:
 
 	```bash
@@ -78,8 +78,8 @@ IOPS are input/output operations per second. Some operations take longer than ot
 ### Tools
 
  - Most tools use `/proc/diskstats` to fetch global IO statistics.
- - Per-process IO statistics are usually fetched from `/proc/[pid]/io`, which is documented in `man 5 proc`
- - From the command-line you can use
+ - Per-process IO statistics are usually fetched from `/proc/[pid]/io`, which is documented in `man 5 proc`.
+ - From the command-line you can use:
 	 - `iostat -xd <delay> <count>` for per-device information
 		 - `-d` device utilization
 		 - `-x` extended statistics

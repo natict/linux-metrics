@@ -31,21 +31,21 @@ While Linux provides multiple metrics for network errors including- collisions, 
 ### Tools
 
  - Most tools use `/proc/net/dev` to fetch network device information.
-	 - For example, try running `sar -n DEV <interval> <count>`
+	 - For example, try running `sar -n DEV <interval> <count>`.
  - Connection information for TCP, UDP and raw sockets can be fetched using `/proc/net/tcp`, `/proc/net/udp`, `/proc/net/raw`
-	 - For parsed socket information use `netstat -tuwnp`
+	 - For parsed socket information use `netstat -tuwnp`.
 		 - `-t`, `-u`, `-w`: TCP, UDP and raw sockets
 		 - `-n`: no DNS resolving
 		 - `-p`: the process owning this socket
  - The most comprehensive command-line utility is `netstat`, covering metrics from interface statistics to socket information.
- - Check `iptraf`  for interactive traffic monitoring (no socket information)
- - Finally, `nethogs` provides a `top`-like experience, allowing you to find which process is taking up the most bandwidth (TCP only)
+ - Check `iptraf`  for interactive traffic monitoring (no socket information).
+ - Finally, `nethogs` provides a `top`-like experience, allowing you to find which process is taking up the most bandwidth (TCP only).
 
 ### Discussion
 
 - What could be the reasons for packet drops? Which of these reasons can be measured on the receiving side?
 - Why can't you see the `%ifutil` value on EC2?
-	- **Hint**: Network device speed is usually found in `/sys/class/net/<dev>/speed`
+	- **Hint**: Network device speed is usually found in `/sys/class/net/<dev>/speed`.
 	- **Workaround**: The `nicstat` utility allows you to specify the speed and duplex of your network interface from the command line:
 	    ```
         nicstat -S eth0:1000fd -n 2
