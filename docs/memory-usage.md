@@ -63,7 +63,7 @@ You will need 3 open terminals for this task. **DO NOT RUN ANY SCRIPTS ON YOUR L
 - Assuming a server has some amount of free memory, can we assume it has enough memory to support it's current workload? If not, why?
 - Run the following stress test, what do you see?
   ```bash
-  (term 2) root:~# bash stress -m 18 --vm-bytes 100M  -t 600s
+  (term 2) root:~# stress -m 18 --vm-bytes 100M  -t 600s
   ```
 
 
