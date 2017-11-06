@@ -45,13 +45,13 @@ or
 
 ### Discussion
 
-- What's the difference between %IO-wait and %idle?
+- What's the difference between `%IO-wait` and `%idle`?
 - Is the entire CPU load created by a process accounted to that process?
 
 ### Further reading
 
-- man proc
-- man sar
+- `man proc`
+- `man sar`
 
 #### Time Stolen and Amazon EC2
 
