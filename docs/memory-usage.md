@@ -48,8 +48,8 @@ You will need 3 open terminals for this task. **DO NOT RUN ANY SCRIPTS ON YOUR L
     ```bash
     (term 2) root:~# python linux-metrics/scripts/memory/dentry.py
     (term 2) root:~# echo 3 > /proc/sys/vm/drop_caches
-    (term 2) root:~# time ls trash
-    (term 2) root:~# time ls trash
+    (term 2) root:~# time ls trash/ >/dev/null
+    (term 2) root:~# time ls trash/ >/dev/null
     ```
 7. Run the `dentry2.py` script and try dropping the caches. Does it make a difference?
     ```bash

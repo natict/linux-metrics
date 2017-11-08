@@ -28,7 +28,8 @@ For each of the following scripts (`dummy1.sh`, `dummy2.sh`, `dummy3.sh`, `dummy
 
 ### Tools
 
- - Most tools use `/proc/stat` to fetch CPU percentage. Note that it displays amount of time and not percentage.
+ - Most tools use `/proc/stat` to fetch CPU percentage. Note that it displays amount of time measured in units of USER_HZ
+   (1/100ths of a second on most architectures), also called jiffies, and not percentage.
  - To get a percentage over a specific interval of time, you can use:
 	 - `sar <interval> <count>`
 	 - or  `sar -P ALL -u <interval> <count>` (for details on multiple cpus)
