@@ -1,0 +1,2 @@
+ws1.example.com:  9137141d-2
+ws2.example.com:  48d90b48-7

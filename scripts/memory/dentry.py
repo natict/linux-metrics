@@ -3,6 +3,7 @@
 import os
 import uuid
 import sys
+import time
 
 try:
     directory = sys.argv[1]
@@ -13,7 +14,8 @@ if not os.path.exists(directory):
     os.makedirs(directory)
 
 try:
-    while True:
+    t_end = time.time() + 30
+    while time.time() < t_end:
         open(os.path.join(directory, str(uuid.uuid4())), 'w')
 except Exception:
     raw_input("click any key to terminate")

@@ -2,6 +2,7 @@
 
 HOG_C=/tmp/hog.c
 HOG=/tmp/hog
+rm -rf $HOG $HOG_C
 
 cat >$HOG_C <<'EOF'
 #include <unistd.h>
@@ -20,6 +21,7 @@ int main(int argc, char* argv[]) {
             count += page_size;
             if (count % (page_size*1024) == 0) {
                 printf("Allocated %ld KB\n", count/1024);
+                usleep(10000);
             }
         }
     }

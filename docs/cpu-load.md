@@ -1,6 +1,8 @@
 # CPU Metrics
 
 ## CPU Load
+On Linux, Load Average is average the number of runnable (running + ready to run) tasks, plus tasks in uninterruptible state, in the last 1, 5, and 15 minutes.
+
 
 ### Recall: Linux Process State
 
@@ -14,30 +16,40 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 ```
 
 ### Task CL1: CPU Load
+Open 3 terminals (ssh connections).
 
-1. What is the Load Average metric? Use the Linux Process States and `man 5 proc` (search for loadavg)
-2. Start the disk stress script (NOTE: avoid running it on your own SSD):
+1. Where are the Load Averages? Use the Linux Process States and `man 5 proc` (search for loadavg):
+```bash
+(term 1) root:~# man 5 proc
+(term 1) root:~# cat /proc/loadavg
+46.26 12.59 4.39 1/106 7023
+```
+2. Start the disk stress script (**NOTE: Do not run this on your own laptop !!!**):
 
-	```bash
-	scripts/disk/writer.sh
-	```
+```bash
+(term 1) root:~# /bin/sh linux-metrics/scripts/disk/writer.sh
+```
 
 3. Run the following command and look at the Load values for about a minute until `ldavg-1` stabilizes:
 
-	```bash
-	sar -q 1 100
-	```
+```bash
+(term 2) root:~# sar -q 1 100
+```
+* What is the writing speed of the script?
+* What is the current Load Average? Why? Which processes contribute to this number?
+```bash
+(term 2) root:~# top
+```
+* What are CPU `%user`, `%sy`, `%IO-wait` and `%idle`?
 
-	1. What is the writing speed of our script (ignore the first value, this is [EBS General Purpose IOPS Burst](http://aws.amazon.com/ebs/details/#GP))?
-	2. What is the current Load Average? Why? Which processes contribute to this number?
-	3. What are CPU %user, %IO-wait and %idle?
 4. While the previous script is running, start a single CPU stress:
 
-	```bash
-	stress -c 1 -t 3600
-	```
-	Wait another minute, and answer the questions above again.
-5. Stop all the scripts
+```bash
+(term 3) root:~# stress -c 1 -t 3600
+```
+Wait another minute, and answer the above questions above.
+
+5. Stop all scripts.
 
 ### Discussion
 
@@ -46,7 +58,10 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 - How can we know if load is going up or down?
 - Does a load average of 70 indicate a problem?
 
-### Tools
+### Further reading
+- [Understanding Linux CPU Load](http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages)
+
+## Tools
 
  - Most tools use `/proc/loadavg` to fetch Load Average and run queue information.
  - To get a percentage over a specific interval of time, you can use:

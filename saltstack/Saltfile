@@ -1,0 +1,7 @@
+salt-ssh:
+  config_dir: ./
+  log_file: /tmp/salt/master.log
+  log_level_logfile: debug
+  ssh_max_procs: 30
+  ssh_wipe: False
+  roster_file: ./roster

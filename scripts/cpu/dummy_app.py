@@ -23,10 +23,10 @@ def foo():
 if __name__ == "__main__":
     m = []
 
-    for _ in xrange(1000):
+    for _ in xrange(5000):
         start = time.time()
         foo()
         m.append(time.time() - start)
 
-    print "50th, 90th and 99th percentile: %f, %f, %f" % (
-        percentile(m, 0.5), percentile(m, 0.9), percentile(m, 0.99))
+    print "50th, 75th, 90th and 99th percentile: %f, %f, %f, %f" % (
+        percentile(m, 0.5), percentile(m, 0.75), percentile(m, 0.9), percentile(m, 0.99))
