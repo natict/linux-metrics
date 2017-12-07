@@ -2,7 +2,7 @@
 
 HOG_C=/tmp/hog.c
 HOG=/tmp/hog
-rm $HOG
+rm -rf $HOG $HOG_C
 
 cat >$HOG_C <<'EOF'
 #include <unistd.h>

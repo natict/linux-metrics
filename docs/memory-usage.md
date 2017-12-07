@@ -60,6 +60,7 @@ You will need 3 open terminals for this task. **DO NOT RUN ANY SCRIPTS ON YOUR L
 
 - What's the difference between `dentry.py` and `dentry2.py`?
 - Assuming a server has some amount of free memory, can we assume it has enough memory to support it's current workload? If not, why?
+- Why wasn't our memory hog able to grab all the `cached` memory?
 - Run the following stress test, what do you see?
   ```bash
   (term 2) root:~# stress -m 18 --vm-bytes 100M  -t 600s

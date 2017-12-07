@@ -1,6 +1,8 @@
 # CPU Metrics
 
 ## CPU Load
+On Linux, Load Average is average the number of runnable (running + ready to run) tasks, plus tasks in uninterruptible state, in the last 1, 5, and 15 minutes.
+
 
 ### Recall: Linux Process State
 
@@ -16,7 +18,7 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 ### Task CL1: CPU Load
 Open 3 terminals (ssh connections).
 
-1. What is the Load Average metric? Use the Linux Process States and `man 5 proc` (search for loadavg):
+1. Where are the Load Averages? Use the Linux Process States and `man 5 proc` (search for loadavg):
 ```bash
 (term 1) root:~# man 5 proc
 (term 1) root:~# cat /proc/loadavg
@@ -55,6 +57,9 @@ Wait another minute, and answer the above questions above.
 - Assuming we have 1 CPU core and Load of 5, is our CPU core on 100% utilization?
 - How can we know if load is going up or down?
 - Does a load average of 70 indicate a problem?
+
+### Further reading
+- [Understanding Linux CPU Load](http://blog.scoutapp.com/articles/2009/07/31/understanding-load-averages)
 
 ## Tools
 
