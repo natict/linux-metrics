@@ -1,0 +1,10 @@
+#!/bin/sh
+THP_DIR="/sys/kernel/mm/transparent_hugepage"
+if test -f $THP_DIR/enabled; then
+    echo never > $THP_DIR/enabled
+fi
+if test -f $THP_DIR/defrag; then
+    echo never > $THP_DIR/defrag
+fi
+echo 0 > /sys/devices/system/cpu/cpu1/online
+exit 0

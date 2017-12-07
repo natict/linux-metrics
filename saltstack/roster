@@ -1,0 +1,4 @@
+ws1:
+  host: 'ws1.example.com'
+ws2:
+  host: 'ws2.example.com'

@@ -1,0 +1,15 @@
+conf_file: ./master
+cachedir: /tmp/saltcache
+file_roots:
+  base:
+    - ./states
+pillar_roots:
+  base:
+    - ./pillars
+timeout: 45
+pki_dir: ./pki/salt/master
+state_verbose: True
+roster_defaults:
+  user: root
+  priv: ~/.ssh/id_rsa
+  thin_dir: /tmp/salt-thin
