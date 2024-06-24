@@ -49,6 +49,7 @@ Z    defunct ("zombie") process, terminated but not reaped by its parent
 ### Tools
 
  - Most tools use `/proc/loadavg` to fetch Load Average and run queue information.
+ - Have a look at `/proc/pressure/cpu` for new [PSI metrics](https://docs.kernel.org/accounting/psi.html) 
  - To get a percentage over a specific interval of time, you can use:
 	 - `sar -q <interval> <count>`
 		 - `-q` queue length and load averages

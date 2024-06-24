@@ -8,64 +8,44 @@ fi
 # Wait for cloud-init
 sleep 10
 
-# sysdig repo
-curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
-curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
-
 # Install packages
-apt-get update
+DIST="$(lsb_release -cs)"
+echo "deb http://repo.netdata.cloud/repos/stable/ubuntu/ ${DIST}/" > /etc/apt/sources.list.d/netdata.list
+wget -O - https://repo.netdata.cloud/netdatabot.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/netdata.gpg
+apt update
 export DEBIAN_PRIORITY=critical
 export DEBIAN_FRONTEND=noninteractive
+apt install -y sysstat stress procps build-essential linux-tools-generic fio iotop iperf iptraf-ng net-tools \
+    nicstat git glibc-doc manpages-dev bpftrace bpfcc-tools netdata \
+    ubuntu-dbgsym-keyring
 
-apt-get -y install procps sysstat stress python2.7 gcc vim vim-youcompleteme linux-tools-common linux-tools-generic linux-tools-$(uname -r) fio iotop iperf iptraf nethogs nicstat git build-essential manpages-dev glibc-doc
-apt-get -y install linux-headers-$(uname -r) sysdig
+echo "deb http://ddebs.ubuntu.com ${DIST} main restricted universe multiverse
+deb http://ddebs.ubuntu.com ${DIST}-updates main restricted universe multiverse
+deb http://ddebs.ubuntu.com ${DIST}-proposed main restricted universe multiverse" > /etc/apt/sources.list.d/ddebs.list
 
-# BCC
-apt-get install -y bison build-essential cmake flex git libedit-dev \
-  libllvm3.7 llvm-3.7-dev libclang-3.7-dev python zlib1g-dev libelf-dev luajit luajit-5.1-dev
-
-cd ~
-git clone https://github.com/iovisor/bcc.git
-mkdir bcc/build; cd bcc/build
-cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
-make install
-ldconfig
-
-cd ~
-LATEST_NETDATA="$(wget -q -O - https://raw.githubusercontent.com/firehol/binary-packages/master/netdata-latest.gz.run)"
-wget -q -O /tmp/netdata.gz.run "https://raw.githubusercontent.com/firehol/binary-packages/master/${LATEST_NETDATA}"
-bash /tmp/netdata.gz.run --quiet --accept
-rm /tmp/netdata.gz.run
+apt update
+apt install -y bpftrace-dbgsym
 
 # Change netdata systemd definition (e.g. to renice)
-cat > /etc/systemd/system/netdata.service <<'EOF'
-[Unit]
-Description=Real time performance monitoring
-After=network.target httpd.service squid.service nfs-server.service mysqld.service mysql.service named.service postfix.service
+mkdir /etc/systemd/system/netdata.service.d/
 
+cat > /etc/systemd/system/netdata.service.d/override.conf<<'EOF'
 [Service]
-Type=simple
-User=netdata
-Group=netdata
-ExecStart=/opt/netdata/usr/sbin/netdata -D
-
 # The minimum netdata Out-Of-Memory (OOM) score.
 # netdata (via [global].OOM score in netdata.conf) can only increase the value set here.
 # To decrease it, set the minimum here and set the same or a higher value in netdata.conf.
 # Valid values: -1000 (never kill netdata) to 1000 (always kill netdata).
 OOMScoreAdjust=-1000
 
+# Valid policies: other (the system default) | batch | idle | fifo | rr
+# To give netdata the max priority, set CPUSchedulingPolicy=rr and CPUSchedulingPriority=99
+CPUSchedulingPolicy=rr
+
+# This sets the scheduling priority (for policies: rr and fifo).
+# Priority gets values 1 (lowest) to 99 (highest).
+CPUSchedulingPriority=99
+
 Nice=-10
-
-# saving a big db on slow disks may need some time
-TimeoutStopSec=60
-
-# restart netdata if it crashes
-Restart=on-failure
-RestartSec=30
-
-[Install]
-WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
