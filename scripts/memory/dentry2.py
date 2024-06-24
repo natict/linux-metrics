@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 
@@ -7,4 +7,4 @@ try:
         os.makedirs("t")
         os.chdir("t")
 except Exception:
-    raw_input("press any key to terminate\n")
+    input("press any key to terminate\n")

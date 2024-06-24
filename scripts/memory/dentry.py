@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import uuid
@@ -16,4 +16,4 @@ try:
     while True:
         open(os.path.join(directory, str(uuid.uuid4())), 'w')
 except Exception:
-    raw_input("click any key to terminate")
+    input("click any key to terminate")
