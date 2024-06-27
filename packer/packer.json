@@ -4,8 +4,8 @@
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "subnet_id": "",
     "vpc_id": "",
-    "aws_region": "eu-west-1",
-    "source_ami": "ami-254ba35c"
+    "aws_region": "eu-central-1",
+    "source_ami": "ami-0fc2927a21c4cd7e2"
   },
   "builders": [
     {
@@ -15,7 +15,7 @@
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "{{user `aws_region`}}",
       "source_ami": "{{user `source_ami`}}",
-      "instance_type": "m4.large",
+      "instance_type": "t2.medium",
       "ssh_username": "ubuntu",
       "ami_name": "linux-metrics-{{timestamp}}",
       "subnet_id": "{{user `subnet_id`}}",
